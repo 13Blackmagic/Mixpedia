@@ -59,10 +59,10 @@ module.exports = {
     }
   },
   // remove a book from `savedBooks`
-  async deleteBook({ user, params }, res) {
+  async deleteDrink({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedBooks: { bookId: params.bookId } } },
+      { $pull: { savedDrink: { drinkId: params.drinkId } } },
       { new: true }
     );
     if (!updatedUser) {
