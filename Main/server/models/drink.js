@@ -1,7 +1,8 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 
-const drinkSchema = new Schema({
+const drinkSchema = new Schema(
+  {
   drinkId: {
     type: String,
     required: true,
@@ -26,14 +27,16 @@ const drinkSchema = new Schema({
     type: String,
     required: true,
   },
-  drinkGlass: {
-    type: String,
-    required: true,
-  },
   drinkCategory: {
     type: String,
     required: true,
   },
 });
 
-module.exports = drinkSchema;
+drinkSchema.virtual('drinkCount').get(function () {
+  return this.savedDrinks.length;
+});
+
+const drink = model('Drink', drinkSchema);
+
+module.exports = drink;
