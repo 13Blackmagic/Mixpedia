@@ -2,27 +2,35 @@ const { Schema } = require('mongoose');
 
 
 const drinkSchema = new Schema({
-  authors: [
-    {
-      type: String,
-    },
-  ],
-  description: {
+  drinkId: {
     type: String,
     required: true,
   },
-  // saved book id from GoogleBooks
-  liquorId: {
+  drinkName: {
     type: String,
     required: true,
   },
-  image: {
+  drinkDescription: {
     type: String,
+    required: true,
   },
-  link: {
+  drinkInstructions: {
     type: String,
+    required: true,
   },
-  name: {
+  drinkIngredients: {
+    type: String,
+    required: true,
+  },
+  drinkImage: {
+    type: String,
+    required: true,
+  },
+  drinkGlass: {
+    type: String,
+    required: true,
+  },
+  drinkCategory: {
     type: String,
     required: true,
   },

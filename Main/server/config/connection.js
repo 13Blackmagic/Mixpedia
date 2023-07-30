@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
+process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/tomdidnothingwrongDB';
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/googlebooks');
+connect(connectionString);
 
 module.exports = mongoose.connection;
