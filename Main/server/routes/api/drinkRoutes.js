@@ -5,7 +5,7 @@ const{
     createDrink,
     updateDrink,
     deleteDrink
-} = require('../../controllers/drink-controller');
+} = require('../../controllers/drinkController');
 
 router.route('/').get(getDrinks).post(createDrink);
 
