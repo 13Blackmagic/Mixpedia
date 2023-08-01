@@ -28,21 +28,21 @@ export const loginUser = (userData) => {
   });
 };
 
-// save book data for a logged in user
-export const saveBook = (bookData, token) => {
+// save drink data for a logged in user
+export const saveDrink = (drinkData, token) => {
   return fetch('/api/users', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(bookData),
+    body: JSON.stringify(drinkData),
   });
 };
 
-// remove saved book data for a logged in user
-export const deleteBook = (bookId, token) => {
-  return fetch(`/api/users/books/${bookId}`, {
+// remove saved drink data for a logged in user
+export const deleteDrink = (DrinkId, token) => {
+  return fetch(`/api/users/drink/${drinkId}`, {
     method: 'DELETE',
     headers: {
       authorization: `Bearer ${token}`,
@@ -52,6 +52,6 @@ export const deleteBook = (bookId, token) => {
 
 // make a search to google books api
 // https://www.googleapis.com/books/v1/volumes?q=harry+potter
-export const searchGoogleBooks = (query) => {
-  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+export const searchCocktailDb = (query) => {
+  return fetch(`https://www.thecocktaildb.com/api.php?q=${query}`);
 };
