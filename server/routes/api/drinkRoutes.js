@@ -1,23 +1,23 @@
 const router = require('express').Router();
 const{
-    getDrinks,
-    getSingleDrink,
+    getAllDrinks,
+    getDrinkById,
     createDrink,
     updateDrink,
     deleteDrink
 } = require('../../controllers/drinkController');
 
-router.route('/').get(getDrinks).post(createDrink);
+router.route('/').get(getAllDrinks).post(createDrink);
 
 router
-    .route('/:drinkId')
-    .get(getSingleDrink)
-    .put(updateDrink)
-    .delete(deleteDrink);
+.route('/:drinkId')
+.get(getDrinkById)
+.put(updateDrink)
+.delete(deleteDrink);
 
-    router
-    .route('/:drinkId/:userId')
-    .put(saveDrink)
-    .delete(deleteDrink);
+// router
+// .route('/:drinkId/:userId')
+// .put(saveDrink)
+// .delete(deleteDrink);
 
 module.exports = router;
