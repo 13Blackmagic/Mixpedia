@@ -1,31 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SearchBooks from './pages/SearchBooks';
-import SavedBooks from './pages/SavedBooks';
-import Navbar from './components/Navbar';
+import HelloReact from './components/HelloReact';
 
+// TODO: Add a comment explaining what this function is doing
+// This function is a functional component that helps us split the UI into distinct parts.
+// In this case, we are returning another component, <HelloReact/> from it.
 function App() {
-  return (
-    <Router>
-      <>
-        <Navbar />
-        <Routes>
-          <Route 
-            path='/' 
-            element={<SearchBooks />} 
-          />
-          <Route 
-            path='/saved' 
-            element={<SavedBooks />} 
-          />
-          <Route 
-            path='*'
-            element={<h1 className='display-2'>Wrong page!</h1>}
-          />
-        </Routes>
-      </>
-    </Router>
-  );
+  return <HelloReact />;
 }
 
 export default App;
