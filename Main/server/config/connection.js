@@ -1,5 +1,5 @@
 process.env.MONGODB_URI || 'mongodb://localhost/mern-starter';
 
-connect(connectionString);
+const mongoose = require('mongoose');
 
 module.exports = mongoose.connection;
