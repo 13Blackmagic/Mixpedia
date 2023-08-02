@@ -20,12 +20,12 @@ const Footer = () => {
           <span
             className="emoji"
             role="img"
-            aria-label="heart"
+            aria-label="beer"
             aria-hidden="false"
           >
-            ❤️
+            🍺
           </span>{' '}
-          by the Tech Thoughts team.
+          by Jonathan, Anthony, Bronson, and Luc!
         </h4>
       </div>
     </footer>
