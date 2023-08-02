@@ -15,9 +15,6 @@ router
 .put(updateDrink)
 .delete(deleteDrink);
 
-// router
-// .route('/:drinkId/:userId')
-// .put(saveDrink)
-// .delete(deleteDrink);
+
 
 module.exports = router;

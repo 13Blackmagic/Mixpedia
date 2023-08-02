@@ -19,4 +19,9 @@ router.route('/me').get(authMiddleware, getSingleUser);
 
 router.route('/drink/:drinkId').delete(authMiddleware, deleteDrink);
 
+router
+.route('/:drinkId/:userId')
+.put(saveDrink)
+.delete(deleteDrink);
+
 module.exports = router;
