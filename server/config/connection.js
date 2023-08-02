@@ -1,5 +1,5 @@
-process.env.MONGODB_URI || 'mongodb://localhost/mern-starter';
-
 const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/mixpedia');
 
 module.exports = mongoose.connection;
