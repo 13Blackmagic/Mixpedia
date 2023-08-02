@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+// import './app.css';
 import Auth from '../../utils/auth';
 
 const Header = () => {
@@ -18,6 +18,9 @@ const Header = () => {
           <p className="m-0">Mixpedia.</p>
         </div>
         <div>
+          <div>
+            <img src="/images/basic drink.jpg" alt="" ></img>
+          </div>
           {Auth.loggedIn() ? (
             <>
               <span>Hey there, {Auth.getProfile().data.username}!</span>
