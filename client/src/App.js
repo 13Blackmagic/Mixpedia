@@ -5,7 +5,7 @@ import {
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context'; 
+import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
@@ -14,6 +14,7 @@ import Login from './pages/Login';
 // import SingleThought from './pages/SingleThought';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -47,17 +48,26 @@ function App() {
           <Header />
           <div className="container">
             <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
+              <Route
+                path="/"
+                element={<Home />}
               />
-              <Route 
-                path="/login" 
-                element={<Login />} 
+              <Route
+                path="/hello"
+                element={
+                  // Recreate the <ProtectedRoute> component here
+                  <ProtectedRoute> 
+                  <div> hello </div>
+                  </ProtectedRoute>
+                }
               />
-              <Route 
-                path="/signup" 
-                element={<Signup />} 
+              <Route
+                path="/login"
+                element={<Login />}
+              />
+              <Route
+                path="/signup"
+                element={<Signup />}
               />
               {/* <Route 
                 path="/thoughts/:thoughtId" 
@@ -72,4 +82,10 @@ function App() {
   );
 }
 
+
+
 export default App;
+
+function Hello() {
+  return <div>hello</div>;
+}
