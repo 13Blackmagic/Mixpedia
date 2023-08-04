@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
+import DrinksPage from './components/DrinksPage';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -52,14 +53,8 @@ function App() {
                 path="/"
                 element={<Home />}
               />
-              <Route
-                path="/hello"
-                element={
-                  // Recreate the <ProtectedRoute> component here
-                  <ProtectedRoute> 
-                  <div> hello </div>
-                  </ProtectedRoute>
-                }
+              <Route path="/DrinksPage" element = {<DrinksPage isloggedin={false}> </DrinksPage>
+              }
               />
               <Route
                 path="/login"
