@@ -11,9 +11,10 @@ module.exports = {
         }
     },
 
-    async getDrinkById({ params }, res) {
+    async getDrinkById( req , res) {
         try {
-            const DrinkData = await Drink.findOne({ _id: params.id });
+            const DrinkData = await Drink.findOne({ idDrink: req.params.idDrink })
+            .select('-__v');
             if (!DrinkData) {
                 res.status(404).json({ message: 'No drink found with this id!' });
                 return;
@@ -30,7 +31,7 @@ module.exports = {
             const DrinkData = await Drink.create(body);
             const user = await User.findOneAndUpdate(
                 { _id: body.userId },
-                { $addToSet: { drinks: DrinkData._id } },
+                { $addToSet: { drinks: DrinkData.idDrink } },
                 { new: true }
             );
             if (!user) {
@@ -48,7 +49,7 @@ module.exports = {
         try {
             console.log(req.params);
             const DrinkData = await Drink.findOneAndUpdate(
-                { _id: params.id },
+                { idDrink: params.idDrink },
                 { $set: req.body },
                 { runValidators: true, new: true }
             );
@@ -65,7 +66,7 @@ module.exports = {
 
     async deleteDrink({ params }, res) {
         try {
-            const DrinkData = await Drink.findOneAndDelete({ _id: params.id });
+            const DrinkData = await Drink.findOneAndDelete({ idDrink: params.idDrink });
             if (!DrinkData) {
                 res.status(404).json({ message: 'No drink found with this id!' });
                 
