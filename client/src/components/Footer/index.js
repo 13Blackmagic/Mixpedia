@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+// import './app.css'
 const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
+       
         <h4>
           Made with{' '}
           <span

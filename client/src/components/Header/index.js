@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import './app.css';
+// import './index.css'
 import Auth from '../../utils/auth';
+
 
 const Header = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
+ 
   };
   return (
     <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
@@ -18,9 +20,9 @@ const Header = () => {
           <p className="m-0">Mixpedia.</p>
         </div>
         <div>
-          <div>
-            <img src="/images/basic drink.jpg" alt="" ></img>
-          </div>
+          {/* <div> */}
+            <img src="/images/basicdrink.jpg" alt="" ></img>
+          {/* </div> */}
           {Auth.loggedIn() ? (
             <>
               <span>Hey there, {Auth.getProfile().data.username}!</span>
