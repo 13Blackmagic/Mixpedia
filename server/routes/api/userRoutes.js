@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {
+  getAllUsers,
   createUser,
   getSingleUser,
   saveDrink,
@@ -11,7 +12,7 @@ const {
 const { authMiddleware } = require('../../utils/auth');
 
 // put authMiddleware anywhere we need to send a token for verification of user
-router.route('/').post(createUser).put(authMiddleware, saveDrink);
+router.route('/').get(getAllUsers).post(createUser).put(authMiddleware, saveDrink);
 
 router.route('/login').post(login);
 

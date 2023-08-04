@@ -10,7 +10,7 @@ const{
 router.route('/').get(getAllDrinks).post(createDrink);
 
 router
-.route('/:drinkId')
+.route('/:idDrink')
 .get(getDrinkById)
 .put(updateDrink)
 .delete(deleteDrink);
