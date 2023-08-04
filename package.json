@@ -5,7 +5,7 @@
     "main": "server.js",
     "scripts": {
       "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-      "seed": "node seeders/seed.js",
+      "seed": "node server/seeders/seed.js",
       "start": "npm run build && cd server && node server.js",
       "server": "cd server nodemon server.js --ignore client",
       "build": "cd client && npm run build",
