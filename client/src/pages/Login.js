@@ -54,7 +54,7 @@ const Login = (props) => {
             ) : (
               <form onSubmit={handleFormSubmit}>
                 <input
-                  className="form-input"
+                  className="form-input form-control"
                   placeholder="Your email"
                   name="email"
                   type="email"
