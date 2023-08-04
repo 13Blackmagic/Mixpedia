@@ -71,8 +71,8 @@ module.exports = {
                 
             }
             const user = await User.findOneAndUpdate(
-                { drinks: req.params.DrinkId },
-                { $pull: { drinks: req.params.DrinkId } },
+                { drinks: req.params.idDrink },
+                { $pull: { drinks: req.params.idDrink } },
                 { new: true }
             );
             if (!user) {

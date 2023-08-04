@@ -1,5 +1,4 @@
-{
-    "drinks": [
+[
         {
             "idDrink": "178370",
             "strDrink": "Mauresque",
@@ -530,5 +529,4 @@
             "strCreativeCommonsConfirmed": "No",
             "dateModified": null
         }
-    ]
-}
+]
