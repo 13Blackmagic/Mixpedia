@@ -41,3 +41,21 @@ export const QUERY_SINGLE_THOUGHT = gql`
     }
   }
 `;
+
+export const QUERY_SINGLE_drink = gql`
+  query getSingleDrink($drinkId: ID!) {
+    drink(drinkId: $drinkId) {
+      _id
+      drinkText
+      drinkAuthor
+      createdAt
+      comments {
+        _id
+        commentText
+        createdAt
+      }
+    }
+  }
+`;
+
+
