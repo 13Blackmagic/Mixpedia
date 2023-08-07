@@ -9,6 +9,15 @@ import CommentForm from '../components/CommentForm';
 
 import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
+<main>
+        <div className="flex-row justify-center">
+            <div className="col-12 col-md-8 mb-3">
+                <CommentList comments={thought.comments} />
+                <img className="Mixed" src="/images/Drinkin.jpg" alt="" ></img>
+            </div>
+        </div>
+</main>
+
 const SingleThought = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { thoughtId } = useParams();
