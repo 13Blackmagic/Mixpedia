@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "server.js",
+    "proxy": "http://localhost:3000",
     "scripts": {
       "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
       "seed": "node server/seeders/seed.js",

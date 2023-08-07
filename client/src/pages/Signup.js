@@ -38,6 +38,12 @@ const Signup = () => {
     }
   };
 
+  try {
+    JSON.parse(data);
+  } catch (e) {
+    console.error(e);
+  }
+
   return (
     <main className="flex-row justify-center mb-4">
       <div className="col-12 col-lg-10">
@@ -47,7 +53,7 @@ const Signup = () => {
             {data ? (
               <p>
                 Success! You may now head{' '}
-                <Link to="/">C:\Users\user\bootcamp\Mixpedia\client\src\pages\SingleThought.js</Link>
+                <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
