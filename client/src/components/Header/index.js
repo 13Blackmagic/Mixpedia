@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import './index.css'
 import Auth from '../../utils/auth';
+import './index.css'
 
 
 const Header = () => {
@@ -17,11 +18,10 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">Mixpedia Home Page</h1>
           </Link>
-          <p className="m-0">Mixpedia.</p>
         </div>
         <div>
           {/* <div> */}
-            <img src="/images/basicdrink.jpg" alt="" ></img>
+            <img className="mainImage" src="/images/basicdrink.jpg" alt="" ></img>
           {/* </div> */}
           {Auth.loggedIn() ? (
             <>
@@ -32,12 +32,7 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
+              
             </>
           )}
         </div>
