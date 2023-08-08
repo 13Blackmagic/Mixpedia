@@ -20,7 +20,7 @@ export const QUERY_THOUGHTS = gql`
     thoughts {
       _id
       thoughtText
-      thoughtAuthor
+      username
       createdAt
     }
   }
