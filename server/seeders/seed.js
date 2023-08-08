@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 const db = require('../config/connection');
 const { User , Thought , Drink } = require('../models');
 const userSeeds = require('./userSeeds.json');
@@ -6,12 +8,13 @@ const drinkSeeds = require('./drinkSeeds.json');
 
 db.once('open', async () => {
   try {
+    const data = await axios.get('https://www.thecocktaildb.com/api/json/v2/9973533/search.php?f=a')
     await Thought.deleteMany({});
     await User.deleteMany({});
     await Drink.deleteMany({});
 
     await User.create(userSeeds);
-    await Drink.create(drinkSeeds);
+    await Drink.create(data.data.drinks);
 
     for (let i = 0; i < thoughtSeeds.length; i++) {
       const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
