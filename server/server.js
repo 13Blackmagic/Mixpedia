@@ -18,13 +18,17 @@ app.use(express.json());
 
 app.use(require("./routes"))
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../client/build')));
-// }
+app.use(express.static(path.join(__dirname, '../client/build')))
 
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/src/index.js'));
-// });
+if (process.env.NODE_ENV === 'production') {
+  router.use((req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+  });
+}
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/src/index.js'));
+});
 
 
 // Create a new instance of an Apollo server with the GraphQL schema
