@@ -18,6 +18,10 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">Mixpedia Home Page</h1>
           </Link>
+          <Link className="text-light" to="/search">
+            <h1 className="m-0">Search for a Drink</h1>
+          </Link>
+          
         </div>
         <div>
           {/* <div> */}
