@@ -24,9 +24,6 @@ const Header = () => {
           
         </div>
         <div>
-          {/* <div> */}
-            <img className="mainImage" src="/images/basicdrink.jpg" alt="" ></img>
-          {/* </div> */}
           {Auth.loggedIn() ? (
             <>
               <span>Hey there, {Auth.getProfile().data.username}!</span>

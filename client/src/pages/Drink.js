@@ -9,6 +9,7 @@ import CommentForm from '../components/CommentForm';
 
 import { QUERY_SINGLE_drink } from '../utils/queries';
 
+
 <main>
         <div className="flex-row justify-center">
             <div className="col-12 col-md-8 mb-3">
