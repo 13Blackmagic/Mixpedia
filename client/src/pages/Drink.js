@@ -37,24 +37,28 @@ const GetAllDrinks = () => {
   return (
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
-        <img className="drinkImage" src={drink[i].strDrinkThumb}></img> <br />
-        Name: {drink[i].strDrink} <br />
+        <img className="drinkImage" src={drink[0].strDrinkThumb}></img> <br />
+        Name: {drink[0].strDrink} <br />
+
         <span style={{ fontSize: '1rem' }}>
-          Category: {drink[i].strCategory}
+          Category: {drink[0].strCategory}
         </span> <br />
+
         <span style={{ fontSize: '1rem' }}>
-          Glass: {drink[i].strGlass}
+          Glass: {drink[0].strGlass}
         </span> <br />
+
         <span style={{ fontSize: '1rem' }}>
-          Instructions: {drink[i].strInstructions}
+          Instructions: {drink[0].strInstructions}
         </span>
+
       </h3>
       <div className="bg-light py-4"></div>
       <div className="my-5">
         <CommentList comments={drink.comments} />
       </div>
       <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm drinkId={drink._id} />
+        <CommentForm drinkId={drink.idDrink} />
       </div>
     </div>
   );      
