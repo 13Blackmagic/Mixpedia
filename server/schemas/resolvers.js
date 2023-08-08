@@ -42,16 +42,17 @@ const resolvers = {
 
       return { token, user };
     },
-    // addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-    //   const thought = await Thought.create({ thoughtText, thoughtAuthor });
 
-    //   await User.findOneAndUpdate(
-    //     { username: thoughtAuthor },
-    //     { $addToSet: { thoughts: thought._id } }
-    //   );
+    addThought: async (parent, { thoughtText, username }, context) => {
+      const thought = await Thought.create({ thoughtText, username });
 
-    //   return thought;
-    // },
+      await User.findOneAndUpdate(
+        { _id: context.user._id  },
+        { $addToSet: { thoughts: thought._id } }
+      );
+
+      return thought;
+    },
     // addComment: async (parent, { thoughtId, commentText, commentAuthor }) => {
     //   return Thought.findOneAndUpdate(
     //     { _id: thoughtId },
