@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, Thought, Drink } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -17,6 +17,10 @@ const resolvers = {
     // thought: async (parent, { thoughtId }) => {
     //   return Thought.findOne({ _id: thoughtId });
     // },
+    getDrinks: async (parent, args) => {
+      const DrinkData = await Drink.find();
+      return DrinkData
+    }
   },
 
   Mutation: {
@@ -75,6 +79,8 @@ const resolvers = {
     //     { new: true }
     //   );
     // },
+
+    
   },
 };
 
