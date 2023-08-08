@@ -34,10 +34,10 @@ const ThoughtForm = () => {
       const { data } = await addThought({
         variables: {
           thoughtText,
-          thoughtAuthor: Auth.getProfile().data.username,
+          username: Auth.getProfile().data.username,
         },
       });
-
+      console.log(data)
       setThoughtText('');
     } catch (err) {
       console.error(err);
