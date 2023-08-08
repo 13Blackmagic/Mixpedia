@@ -8,6 +8,7 @@ import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
 import { QUERY_SINGLE_drink, QUERY_ALL_DRINKS } from '../utils/queries';
+import './Drink.css';
 
 /* <main>
         <div className="flex-row justify-center">
@@ -18,14 +19,7 @@ import { QUERY_SINGLE_drink, QUERY_ALL_DRINKS } from '../utils/queries';
         </div>
 </main> */
 
-
-
-
-
-
-
-
-const Singledrink = () => {
+const GetAllDrinks = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { drinkId } = useParams();
   const { loading, data } = useQuery(QUERY_ALL_DRINKS)
@@ -43,25 +37,19 @@ const Singledrink = () => {
   return (
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
-        {drink.drinkAuthor} <br />
+        <img className="drinkImage" src={drink[i].strDrinkThumb}></img> <br />
+        Name: {drink[i].strDrink} <br />
         <span style={{ fontSize: '1rem' }}>
-          had this drink on {drink[0].strCategory}
+          Category: {drink[i].strCategory}
+        </span> <br />
+        <span style={{ fontSize: '1rem' }}>
+          Glass: {drink[i].strGlass}
+        </span> <br />
+        <span style={{ fontSize: '1rem' }}>
+          Instructions: {drink[i].strInstructions}
         </span>
       </h3>
-      <div className="bg-light py-4">
-        {/* <blockquote
-          className="p-4"
-          style={{
-            fontSize: '1.5rem',
-            fontStyle: 'italic',
-            border: '2px dotted #1a1a1a',
-            lineHeight: '1.5',
-          }}
-        >
-          {drink.drinkText}
-        </blockquote> */}
-      </div>
-
+      <div className="bg-light py-4"></div>
       <div className="my-5">
         <CommentList comments={drink.comments} />
       </div>
@@ -69,7 +57,7 @@ const Singledrink = () => {
         <CommentForm drinkId={drink._id} />
       </div>
     </div>
-  );
+  );      
 };
 
-export default Singledrink;
+export default GetAllDrinks;
