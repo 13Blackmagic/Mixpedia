@@ -58,4 +58,29 @@ export const QUERY_SINGLE_drink = gql`
   }
 `;
 
+export const QUERY_ALL_DRINKS = gql`
+query Query {
+  getDrinks {
+    idDrink
+    strDrink
+    strGlass
+    strInstructions
+    strIngredients1
+    strIngredients2
+    strIngredients3
+    strIngredients4
+    strIngredients5
+    strIngredients6
+    strIngredients7
+    strMeasure1
+    strMeasure2
+    strMeasure3
+    strMeasure4
+    strMeasure5
+    strMeasure6
+    strMeasure7
+    strDrinkThumb
+    strCategory
+  }
+}`;
 
