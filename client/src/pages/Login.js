@@ -49,7 +49,7 @@ const Login = (props) => {
             {data ? (
               <p>
                 Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/">C:\Users\user\bootcamp\Mixpedia\client\src\pages\Drink.js</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
