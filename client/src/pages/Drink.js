@@ -7,27 +7,35 @@ import { useQuery } from '@apollo/client';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
-import { QUERY_SINGLE_drink } from '../utils/queries';
+import { QUERY_SINGLE_drink, QUERY_ALL_DRINKS } from '../utils/queries';
 
-<main>
+/* <main>
         <div className="flex-row justify-center">
             <div className="col-12 col-md-8 mb-3">
                 <CommentList comments={drink.comments} />
                 <img className="Drinkin" src="/images/Drinkin.jpg" alt="" ></img>
             </div>
         </div>
-</main>
+</main> */
+
+
+
+
+
+
+
 
 const Singledrink = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { drinkId } = useParams();
+  const { loading, data } = useQuery(QUERY_ALL_DRINKS)
+  console.log(data)
+  // const { loading, data } = useQuery(QUERY_SINGLE_drink, {
+  //   // pass URL parameter
+  //   variables: { drinkId: drinkId },
+  // });
 
-  const { loading, data } = useQuery(QUERY_SINGLE_drink, {
-    // pass URL parameter
-    variables: { drinkId: drinkId },
-  });
-
-  const drink = data?.drink || {};
+  const drink = data?.getDrinks || {};
 
   if (loading) {
     return <div>Loading...</div>;
@@ -37,11 +45,11 @@ const Singledrink = () => {
       <h3 className="card-header bg-dark text-light p-2 m-0">
         {drink.drinkAuthor} <br />
         <span style={{ fontSize: '1rem' }}>
-          had this drink on {drink.createdAt}
+          had this drink on {drink[0].strCategory}
         </span>
       </h3>
       <div className="bg-light py-4">
-        <blockquote
+        {/* <blockquote
           className="p-4"
           style={{
             fontSize: '1.5rem',
@@ -51,7 +59,7 @@ const Singledrink = () => {
           }}
         >
           {drink.drinkText}
-        </blockquote>
+        </blockquote> */}
       </div>
 
       <div className="my-5">
