@@ -18,11 +18,12 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">Mixpedia Home Page</h1>
           </Link>
+          <Link className="text-light" to="/search">
+            <h1 className="m-0">Search for a Drink</h1>
+          </Link>
+          
         </div>
         <div>
-          {/* <div> */}
-            <img className="mainImage" src="/images/basicdrink.jpg" alt="" ></img>
-          {/* </div> */}
           {Auth.loggedIn() ? (
             <>
               <span>Hey there, {Auth.getProfile().data.username}!</span>
