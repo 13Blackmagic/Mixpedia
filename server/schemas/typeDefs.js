@@ -63,6 +63,8 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addThought(thoughtText: String!, username: String!): Thought
+    createDrink(drinkdata: DrinkInput!):User
+    deleteDrink(drinkId: ID!):User
     ## addComment(
       ## thoughtId: ID!
       ## commentText: String!
@@ -70,6 +72,29 @@ const typeDefs = gql`
       ## ): Thought
       ## removeThought(thoughtId: ID!): Thought
       ## removeComment(thoughtId: ID!, commentId: ID!): Thought
+  }
+
+  input DrinkInput {
+    idDrink: String!
+    strDrink: String!
+    strGlass: String!
+    strInstructions: String!
+    strIngredients1: String
+    strIngredients2: String
+    strIngredients3: String
+    strIngredients4: String
+    strIngredients5: String
+    strIngredients6: String
+    strIngredients7: String
+    strMeasure1: String
+    strMeasure2: String
+    strMeasure3: String
+    strMeasure4: String
+    strMeasure5: String
+    strMeasure6: String
+    strMeasure7: String
+    strDrinkThumb: String!
+    strCategory: String!
   }
 `;
 

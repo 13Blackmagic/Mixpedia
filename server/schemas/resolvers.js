@@ -47,47 +47,31 @@ const resolvers = {
       return { token, user };
     },
 
-    async createDrink(parent, args, context) {
-      try {
-          const DrinkData = await Drink.create(args);
-          const user = await User.findOneAndUpdate(
-              { _id: context.user._id },
-              { $addToSet: { drinks: DrinkData.idDrink } },
-              { new: true }
-          );
-          if (!user) {
-              res.status(404).json({ message: 'No user found with this id!' });
-              return;
-          }
-          res.json(DrinkData);
-      } catch (err) {
-          console.log(err);
-          res.status(400).json(err);
-      }
-  },
-
-  async deleteDrink({ params }, res) {
-    try {
-        const DrinkData = await Drink.findOneAndDelete({ idDrink: params.idDrink });
-        if (!DrinkData) {
-            res.status(404).json({ message: 'No drink found with this id!' });
-            
-        }
-        const user = await User.findOneAndUpdate(
-            { drinks: req.params.idDrink },
-            { $pull: { drinks: req.params.idDrink } },
-            { new: true }
+    createDrink: async(parent, {drinkData} ,context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedDrinks: drinkData } },
+          { new: true }
         );
-        if (!user) {
-            res.status(404).json({ message: 'No user found with this id!' });
-            return;
-        }
-        res.json(DrinkData);
-    } catch (err) {
-        res.status(400).json(err);
-    }
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+
+    deleteDrink: async (parent, {drinkId}, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedDrinks: { drinkId } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
 }
-};
+}
 
 
     // addThought: async (parent, { thoughtText, username }, context) => {
@@ -123,8 +107,7 @@ const resolvers = {
     //   );
     // },
 
-    
-  },
-};
+
+
 
 module.exports = resolvers;

@@ -12,7 +12,7 @@ const GetAllDrinks = () => {
   const { loading, data } = useQuery(QUERY_ALL_DRINKS)
   
 
-  const drink = data?.getDrinks || {};
+  const drink = data?.getDrinks() || {};
   if (loading) {
     return <div>Loading...</div>;
   }
