@@ -8,7 +8,7 @@ const drinkSeeds = require('./drinkSeeds.json');
 
 db.once('open', async () => {
   try {
-    const data = await axios.get('https://www.thecocktaildb.com/api/json/v2/9973533/search.php?f=a')
+    const data = await axios.get('https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php')
     await Thought.deleteMany({});
     await User.deleteMany({});
     await Drink.deleteMany({});

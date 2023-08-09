@@ -23,36 +23,40 @@ const GetAllDrinks = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { drinkId } = useParams();
   const { loading, data } = useQuery(QUERY_ALL_DRINKS)
-  console.log(data)
   // const { loading, data } = useQuery(QUERY_SINGLE_drink, {
   //   // pass URL parameter
   //   variables: { drinkId: drinkId },
   // });
 
   const drink = data?.getDrinks || {};
-
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <div className="my-3">
-      <h3 className="card-header bg-dark text-light p-2 m-0">
-        <img className="drinkImage" src={drink[0].strDrinkThumb}></img> <br />
-        Name: {drink[0].strDrink} <br />
-
-        <span style={{ fontSize: '1rem' }}>
-          Category: {drink[0].strCategory}
-        </span> <br />
-
-        <span style={{ fontSize: '1rem' }}>
-          Glass: {drink[0].strGlass}
-        </span> <br />
-
-        <span style={{ fontSize: '1rem' }}>
-          Instructions: {drink[0].strInstructions}
-        </span>
-
-      </h3>
+      <div className="card-header bg-dark text-light p-2 m-0">
+      {drink.map((drink, i) => {
+        return <div key={i}>
+          {console.log(drink)}
+          <img className="drinkImage" src={drink.strDrinkThumb}></img> <br />
+          <span>Name: </span>{drink.strDrink} <br />
+  
+          <span style={{ fontSize: '1rem' }}>
+            Category: {drink.strCategory}
+          </span> <br />
+  
+          <span style={{ fontSize: '1rem' }}>
+            Glass: {drink.strGlass}
+          </span> <br />
+  
+          <span style={{ fontSize: '1rem' }}>
+            Instructions: {drink.strInstructions}
+          </span>
+        </div>
+  
+      })}
+      </div>
       <div className="bg-light py-4"></div>
       <div className="my-5">
         <CommentList comments={drink.comments} />
