@@ -63,49 +63,22 @@ export const ADD_COMMENT = gql`
   }
 `;
 
-export const ADD_DRINK = gql`  
-mutation addComment(
-  $thoughtId: ID!
-  $commentText: String!
-  $commentAuthor: String!
-) {
-  addComment(
-    thoughtId: $thoughtId
-    commentText: $commentText
-    commentAuthor: $commentAuthor
-  ) {
+export const CREATE_DRINK = gql`  
+mutation CreateDrink($idDrink: String!, $name: String!, $category: String!, $instructions: String!) {
+  createDrink(idDrink: $idDrink, name: $name, category: $category, instructions: $instructions) {
     _id
-    thoughtText
-    thoughtAuthor
-    createdAt
-    comments {
-      _id
-      commentText
-      createdAt
-    }
+    email
+    username
   }
 }
 `;
 
-export const DELETE_DRINK = gql`  mutation addComment(
-  $thoughtId: ID!
-  $commentText: String!
-  $commentAuthor: String!
-) {
-  addComment(
-    thoughtId: $thoughtId
-    commentText: $commentText
-    commentAuthor: $commentAuthor
-  ) {
+export const DELETE_DRINK = gql`
+mutation DeleteDrink($idDrink: String!) {
+  deleteDrink(idDrink: $idDrink) {
     _id
-    thoughtText
-    thoughtAuthor
-    createdAt
-    comments {
-      _id
-      commentText
-      createdAt
-    }
+    email
+    username
   }
 }
 `;

@@ -18,25 +18,11 @@ const typeDefs = gql`
 
   type Drink {
     idDrink: String!
-    strDrink: String!
-    strGlass: String!
-    strInstructions: String!
-    strIngredients1: String
-    strIngredients2: String
-    strIngredients3: String
-    strIngredients4: String
-    strIngredients5: String
-    strIngredients6: String
-    strIngredients7: String
-    strMeasure1: String
-    strMeasure2: String
-    strMeasure3: String
-    strMeasure4: String
-    strMeasure5: String
-    strMeasure6: String
-    strMeasure7: String
-    strDrinkThumb: String!
-    strCategory: String!    
+    name: String!
+    glass: String!
+    image: String
+    category: String!
+    instructions: String!  
   }
 
   type Comment {
@@ -52,6 +38,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    me: User
     users: [User]
     ## user(username: String!): User
     ## thoughts(username: String): [Thought]
@@ -62,7 +49,9 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!, username: String!): Thought
+    createDrink(idDrink: String!, name: String!, glass: String!, image: String, category: String!, instructions: String!): User
+    deleteDrink(idDrink: String!): User
+    ## addThought(thoughtText: String!, username: String!): Thought
     ## addComment(
       ## thoughtId: ID!
       ## commentText: String!

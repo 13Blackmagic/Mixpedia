@@ -11,6 +11,14 @@ const drinkSchema = new Schema(
     type: String,
     required: true,
   },
+  glass:{
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: false,
+  },
   category: {
     type: String,
     required: false,

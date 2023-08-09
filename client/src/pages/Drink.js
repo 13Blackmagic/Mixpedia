@@ -1,18 +1,37 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
-import { QUERY_SINGLE_drink, QUERY_ALL_DRINKS } from '../utils/queries';
+import { QUERY_ALL_DRINKS } from '../utils/queries';
+import { CREATE_DRINK } from '../utils/mutations';
 
 const GetAllDrinks = () => {
   
   const { drinkId } = useParams();
   const { loading, data } = useQuery(QUERY_ALL_DRINKS)
+  const [createDrink] = useMutation(CREATE_DRINK);
   
+  console.log(data)
+  const drinks = data?.getDrinks || [];
 
-  const drink = data?.getDrinks || {};
+
+  async function addDrink(event){
+    try {
+      const newDrink = event.target.dataset;
+      const { data } = await createDrink({
+        variables: {
+          ...newDrink
+        },
+      });
+      console.log(data)
+    } catch(err){
+      console.log(err)
+    }
+  }
+
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -20,25 +39,32 @@ const GetAllDrinks = () => {
   return (
     <div className="my-3">
       <div className="card-header bg-dark text-light p-2 m-0">
-      {drink.map((drink, i) => {
+      {drinks?.map((drink, i) => {
         return <div key={i}>
           {console.log(drink)}
-          <img className="drinkImage" src={drink.strDrinkThumb}></img> <br />
-          <span>Name: </span>{drink.strDrink} <br />
+          <img className="drinkImage" src={drink.image}></img> <br />
+          <span>Name: </span>{drink.name} <br />
   
           <span style={{ fontSize: '1rem' }}>
-            Category: {drink.strCategory}
+            Category: {drink.category}
           </span> <br />
   
           <span style={{ fontSize: '1rem' }}>
-            Glass: {drink.strGlass}
+            Glass: {drink.glass}
           </span> <br />
   
           <span style={{ fontSize: '1rem' }}>
-            Instructions: {drink.strInstructions}
+            Instructions: {drink.instructions}
           </span>
           
-
+          <button 
+            data-drinkId={drink.drinkId} 
+            data-name={drink.strDrink}  
+            data-category={drink.strCategory}
+            data-glass={drink.strGlass}
+            data-instructions={drink.strInstructions}
+            data-image={drink.strDrinkThumb}
+            onClick={addDrink}>Create Drink</button>
         </div>
         })}
       </div>
