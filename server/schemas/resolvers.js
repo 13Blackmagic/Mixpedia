@@ -47,16 +47,59 @@ const resolvers = {
       return { token, user };
     },
 
-    addThought: async (parent, { thoughtText, username }, context) => {
-      const thought = await Thought.create({ thoughtText, username });
+    async createDrink(parent, args, context) {
+      try {
+          const DrinkData = await Drink.create(args);
+          const user = await User.findOneAndUpdate(
+              { _id: context.user._id },
+              { $addToSet: { drinks: DrinkData.idDrink } },
+              { new: true }
+          );
+          if (!user) {
+              res.status(404).json({ message: 'No user found with this id!' });
+              return;
+          }
+          res.json(DrinkData);
+      } catch (err) {
+          console.log(err);
+          res.status(400).json(err);
+      }
+  },
 
-      await User.findOneAndUpdate(
-        { _id: context.user._id  },
-        { $addToSet: { thoughts: thought._id } }
-      );
+  async deleteDrink({ params }, res) {
+    try {
+        const DrinkData = await Drink.findOneAndDelete({ idDrink: params.idDrink });
+        if (!DrinkData) {
+            res.status(404).json({ message: 'No drink found with this id!' });
+            
+        }
+        const user = await User.findOneAndUpdate(
+            { drinks: req.params.idDrink },
+            { $pull: { drinks: req.params.idDrink } },
+            { new: true }
+        );
+        if (!user) {
+            res.status(404).json({ message: 'No user found with this id!' });
+            return;
+        }
+        res.json(DrinkData);
+    } catch (err) {
+        res.status(400).json(err);
+    }
+}
+};
 
-      return thought;
-    },
+
+    // addThought: async (parent, { thoughtText, username }, context) => {
+    //   const thought = await Thought.create({ thoughtText, username });
+
+    //   await User.findOneAndUpdate(
+    //     { _id: context.user._id  },
+    //     { $addToSet: { thoughts: thought._id } }
+    //   );
+
+    //   return thought;
+    // },
     // addComment: async (parent, { thoughtId, commentText, commentAuthor }) => {
     //   return Thought.findOneAndUpdate(
     //     { _id: thoughtId },

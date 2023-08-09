@@ -6,13 +6,18 @@ import {
   Row,
   Col
 } from 'react-bootstrap';
-import { getMe, deleteDrink } from '';
-import { deleteDrink } from '../utils/mutations';
+import { GET_ME } from '../utils/queries';
+import { DELETE_DRINK } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { useQuery, useMutation } from '@apollo/client';
 
 const SavedDrinks = () => {
-  const [userData, setUserData] = useState({});
+  // const [userData, setUserData] = useState({});
 
+// const { loading, data } = useQuery(GET_ME);
+const [deleteDrink, { error }] = useMutation(DELETE_DRINK);
+// const userData = data?.me || {};
+var userData={};
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
 
@@ -25,14 +30,14 @@ const SavedDrinks = () => {
           return false;
         }
 
-        const response = await getMe(token);
+        // const response = await getMe(token);
 
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        }
+        // if (!response.ok) {
+        //   throw new Error('something went wrong!');
+        // }
 
-        const user = await response.json();
-        setUserData(user);
+        // const user = await response.json();
+        // setUserData(user);
       } catch (err) {
         console.error(err);
       }
@@ -57,9 +62,9 @@ const SavedDrinks = () => {
       }
 
       const updatedUser = await response.json();
-      setUserData(updatedUser);
+      // setUserData(updatedUser);
       // upon success, remove drink's id from localStorage
-      removedrinkId(drinkId);
+      // removeDrinkId(drinkId);
     } catch (err) {
       console.error(err);
     }
