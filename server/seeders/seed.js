@@ -14,8 +14,16 @@ db.once('open', async () => {
     await Drink.deleteMany({});
 
     await User.create(userSeeds);
-    await Drink.create(data.data.drinks);
-
+    /*
+    const drinkData = data.data.drink.map(drink => {
+      return {
+        idDrink: drink.idDrink,
+        name: drink.strDrink,
+      }
+    })
+    */
+    const drinksall = await Drink.create(drinkSeeds[0]);
+    console.log(drinksall)
     for (let i = 0; i < thoughtSeeds.length; i++) {
       const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
       const user = await User.findOneAndUpdate(

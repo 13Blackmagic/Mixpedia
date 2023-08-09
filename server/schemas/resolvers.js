@@ -4,6 +4,14 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userdata = await User.findOne({ _id: context.user._id }).populate('savedDrinks');
+        console.log(userdata)
+        return userdata;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     users: async (parent, args, context) => {
       return User.findById(context.user._id).populate('savedDrinks');
     },
@@ -19,6 +27,7 @@ const resolvers = {
     // },
     getDrinks: async (parent, args) => {
       const DrinkData = await Drink.find();
+      console.log(DrinkData)
       return DrinkData
     }
   },
@@ -49,45 +58,49 @@ const resolvers = {
 
     async createDrink(parent, args, context) {
       try {
-          const DrinkData = await Drink.create(args);
+          if(!context.user) {
+            throw new AuthenticationError('You need to be logged in!');
+          }
+          const drinkData = await Drink.create(args);
           const user = await User.findOneAndUpdate(
               { _id: context.user._id },
-              { $addToSet: { drinks: DrinkData.idDrink } },
+              { $addToSet: { savedDrinks: drinkData._id} },
               { new: true }
           );
           if (!user) {
-              res.status(404).json({ message: 'No user found with this id!' });
-              return;
+              throw new AuthenticationError('No user found with this id!');
           }
-          res.json(DrinkData);
+          return user;
       } catch (err) {
           console.log(err);
-          res.status(400).json(err);
+          throw new AuthenticationError('Error creating drink');
       }
   },
 
-  async deleteDrink({ params }, res) {
+  async deleteDrink(parent, args, context) {
     try {
-        const DrinkData = await Drink.findOneAndDelete({ idDrink: params.idDrink });
+      if(!context.user) { 
+        throw new AuthenticationError('You need to be logged in!');
+      }
+      // _id or idDrink? before colon
+        const DrinkData = await Drink.findOneAndDelete({ _id: args.idDrink });
         if (!DrinkData) {
-            res.status(404).json({ message: 'No drink found with this id!' });
+            throw  new AuthenticationError('No drink found with this id!');
             
         }
         const user = await User.findOneAndUpdate(
-            { drinks: req.params.idDrink },
-            { $pull: { drinks: req.params.idDrink } },
+            { drinks: args.idDrink },
+            { $pull: { drinks: args.idDrink } },
             { new: true }
         );
         if (!user) {
-            res.status(404).json({ message: 'No user found with this id!' });
-            return;
+            throw new AuthenticationError('No user found with this id!');
         }
-        res.json(DrinkData);
+        return user;
     } catch (err) {
-        res.status(400).json(err);
+        throw new AuthenticationError('Error deleting drink');
     }
-}
-};
+  },
 
 
     // addThought: async (parent, { thoughtText, username }, context) => {

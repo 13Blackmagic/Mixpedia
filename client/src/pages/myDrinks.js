@@ -7,47 +7,21 @@ import {
   Col
 } from 'react-bootstrap';
 import { GET_ME } from '../utils/queries';
-import { DELETE_DRINK } from '../utils/mutations';
+import { DELETE_DRINK, CREATE_DRINK } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
 
 const SavedDrinks = () => {
   // const [userData, setUserData] = useState({});
 
-// const { loading, data } = useQuery(GET_ME);
+const { loading, data } = useQuery(GET_ME);
 const [deleteDrink, { error }] = useMutation(DELETE_DRINK);
-// const userData = data?.me || {};
-var userData={};
-  // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(userData).length;
+const userData = data?.me || {};
+console.log(userData)
 
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        if (!token) {
-          return false;
-        }
-
-        // const response = await getMe(token);
-
-        // if (!response.ok) {
-        //   throw new Error('something went wrong!');
-        // }
-
-        // const user = await response.json();
-        // setUserData(user);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getUserData();
-  }, [userDataLength]);
 
   // create function that accepts the drink's mongo _id value as param and deletes the drink from the database
-  const handleDeletedrink = async (drinkId) => {
+  const handleDeleteDrink = async (drinkId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -55,23 +29,19 @@ var userData={};
     }
 
     try {
-      const response = await deleteDrink(drinkId, token);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const updatedUser = await response.json();
-      // setUserData(updatedUser);
+      const {data} = await deleteDrink({
+        variables: {drinkId}
+      });
+      console.log(data);
       // upon success, remove drink's id from localStorage
-      // removeDrinkId(drinkId);
+      //removeDrinkId(drinkId);
     } catch (err) {
       console.error(err);
     }
   };
 
   // if data isn't here yet, say so
-  if (!userDataLength) {
+  if (loading) {
     return <h2>LOADING...</h2>;
   }
 
@@ -84,21 +54,22 @@ var userData={};
       </div>
       <Container>
         <h2 className='pt-5'>
-          {userData.SavedDrinks.length
+          {userData?.savedDrinks?.length
             ? `Viewing ${userData.SavedDrinks.length} saved ${userData.SavedDrinks.length === 1 ? 'drink' : 'drinks'}:`
             : 'You have no saved drinks!'}
         </h2>
         <Row>
-          {userData.SavedDrinks.map((drink) => {
+          {userData?.savedDrinks?.map((drink) => {
             return (
               <Col md="4">
                 <Card key={drink.drinkId} border='dark'>
-                  {drink.image ? <Card.Img src={drink.image} alt={`The cover for ${drink.title}`} variant='top' /> : null}
+                  {drink.image ? <Card.Img src={drink.image} alt={`The cover for ${drink.title}`} variant='top' /> : null} 
                   <Card.Body>
-                    <Card.Title>{drink.title}</Card.Title>
-                    <p className='small'>Authors: {drink.authors}</p>
-                    <Card.Text>{drink.description}</Card.Text>
-                    <Button className='btn-block btn-danger' onClick={() => handleDeletedrink(drink.drinkId)}>
+                    <Card.Title>{drink.name}</Card.Title>
+                    <p className='small'>Category: {drink.category}</p>
+                    <p className='small'>Glass: {drink.glass}</p>
+                    <Card.Text>{drink.instructions}</Card.Text>
+                    <Button className='btn-block btn-danger' onClick={() => handleDeleteDrink(drink.drinkId)}>
                       Delete this drink!
                     </Button>
                   </Card.Body>
