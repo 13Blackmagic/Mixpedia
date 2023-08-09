@@ -15,10 +15,8 @@ module.exports = {
     res.json(foundUser);
   },
   
-  async getSingleUser({ user = null, params }, res) {
-    const foundUser = await User.findOne({
-      $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    });
+  async getSingleUser({ params }, res) {
+    const foundUser = await User.findOne({_id: params.id});
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -53,12 +51,12 @@ module.exports = {
     res.json({ token, user });
   },
 
-  async saveDrink({ user, body }, res) {
-    console.log(user);
+  async saveDrink({ params }, res) {
     try {
+      const drink = Drink.findOne({drinkId:params.drinkId});
       const updatedUser = await User.findOneAndUpdate(
-        { _id: user._id },
-        { $addToSet: { savedDrinks: body } },
+        { _id: params.id },
+        { $addToSet: { savedDrinks: drink.drinkId } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);

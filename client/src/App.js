@@ -17,7 +17,7 @@ import Footer from './components/Footer';
 import ProtectedRoute from './components/Home';
 import DrinksPage from './components/DrinksPage';
 import Drinks from './pages/Drink';
-import myDrinks from './pages/myDrinks'
+import MyDrinks from './pages/myDrinks'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -73,7 +73,7 @@ function App() {
 
               <Route
                 path="/mydrinks"
-                element={<myDrinks />}
+                element={<MyDrinks />}
               />  
 
               
