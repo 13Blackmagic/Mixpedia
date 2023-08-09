@@ -66,10 +66,6 @@ function App() {
                 path="/signup"
                 element={<Signup />}
               />
-              {/* <Route 
-                path="/thoughts/:thoughtId" 
-                element={<SingleThought />} 
-              /> */}
               <Route
                 path="/drinks"
                 element={<Drinks />}

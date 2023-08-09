@@ -10,21 +10,18 @@ import { QUERY_USER } from '../utils/queries';
 
 
 
-const GetUserDrinks = () => {
-    
-    const { loading } = useQuery(QUERY_USER)
-    
-  
-    if (loading) {
-      return <div>Loading...</div>;
-    }
-  
+const MyDrinks = () => {
+
+    const { loading, data } = useQuery(QUERY_USER)
+
+    const myDrinks = data.user.savedDrinks
+
     return (
 
-        <h3>Something cool</h3>
+        <span>Something cool is {myDrinks}</span>
 
 
     );      
   };
   
-  export default GetUserDrinks;
+  export default MyDrinks;
