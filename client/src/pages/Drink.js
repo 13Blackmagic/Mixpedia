@@ -53,16 +53,16 @@ const GetAllDrinks = () => {
           <span style={{ fontSize: '1rem' }}>
             Instructions: {drink.strInstructions}
           </span>
+            <div className="bg-light py-4"></div>
+            <div className="my-5">
+              <CommentList comments={drink.comments} />
+            </div>
+            <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
+              <CommentForm drinkId={drink.idDrink} />
+            </div>
         </div>
   
       })}
-      </div>
-      <div className="bg-light py-4"></div>
-      <div className="my-5">
-        <CommentList comments={drink.comments} />
-      </div>
-      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm drinkId={drink.idDrink} />
       </div>
     </div>
   );      
