@@ -8,28 +8,12 @@ import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
 import { QUERY_SINGLE_drink, QUERY_ALL_DRINKS } from '../utils/queries';
-import './Drink.css';
-
-/* <main>
-        <div className="flex-row justify-center">
-            <div className="col-12 col-md-8 mb-3">
-                <CommentList comments={drink.comments} />
-                <img className="Drinkin" src="/images/Drinkin.jpg" alt="" ></img>
-            </div>
-            <div>
-              
-            </div>
-        </div>
-</main> */
 
 const GetAllDrinks = () => {
-  // Use `useParams()` to retrieve value of the route parameter `:profileId`
+  
   const { drinkId } = useParams();
   const { loading, data } = useQuery(QUERY_ALL_DRINKS)
-  // const { loading, data } = useQuery(QUERY_SINGLE_drink, {
-  //   // pass URL parameter
-  //   variables: { drinkId: drinkId },
-  // });
+  
 
   const drink = data?.getDrinks || {};
   if (loading) {
@@ -56,16 +40,10 @@ const GetAllDrinks = () => {
           <span style={{ fontSize: '1rem' }}>
             Instructions: {drink.strInstructions}
           </span>
-            <div className="bg-light py-4"></div>
-            <div className="my-5">
-              <CommentList comments={drink.comments} />
-            </div>
-            <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-              <CommentForm drinkId={drink.idDrink} />
-            </div>
+          
+
         </div>
-  
-      })}
+        })}
       </div>
     </div>
   );      
