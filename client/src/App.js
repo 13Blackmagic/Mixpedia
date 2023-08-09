@@ -17,6 +17,7 @@ import Footer from './components/Footer';
 import ProtectedRoute from './components/Home';
 import DrinksPage from './components/DrinksPage';
 import Drinks from './pages/Drink';
+import myDrinks from './pages/myDrinks'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -65,14 +66,15 @@ function App() {
                 path="/signup"
                 element={<Signup />}
               />
-              {/* <Route 
-                path="/thoughts/:thoughtId" 
-                element={<SingleThought />} 
-              /> */}
               <Route
                 path="/drinks"
                 element={<Drinks />}
               />
+
+              <Route
+                path="/mydrinks"
+                element={<myDrinks />}
+              />  
 
               
             </Routes>
