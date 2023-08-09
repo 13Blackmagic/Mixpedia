@@ -14,11 +14,13 @@ const MyDrinks = () => {
 
     const { loading, data } = useQuery(QUERY_USER)
 
-    const myDrinks = data.user.savedDrinks
+    console.log(data)
+
+    // const myDrinks = data.user.savedDrinks
 
     return (
 
-        <span>Something cool is {myDrinks}</span>
+        <span>Something cool is</span>
 
 
     );      
