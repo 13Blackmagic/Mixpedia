@@ -16,6 +16,9 @@ import './Drink.css';
                 <CommentList comments={drink.comments} />
                 <img className="Drinkin" src="/images/Drinkin.jpg" alt="" ></img>
             </div>
+            <div>
+              
+            </div>
         </div>
 </main> */
 

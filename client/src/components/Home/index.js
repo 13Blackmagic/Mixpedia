@@ -4,7 +4,7 @@ import { Route, Redirect, Navigate } from 'react-router-dom';
 import React from 'react';
 
 
-class ProtectedRoute extends Route {
+class Home extends Route {
     constructor (children) {
         super(children);
         this.children = children;
@@ -33,4 +33,4 @@ class ProtectedRoute extends Route {
     }
 };
 
-export default ProtectedRoute;
+export default Home;
