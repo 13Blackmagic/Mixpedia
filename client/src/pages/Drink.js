@@ -15,6 +15,9 @@ import { QUERY_SINGLE_drink } from '../utils/queries';
                 <CommentList comments={drink.comments} />
                 <img className="Drinkin" src="/images/Drinkin.jpg" alt="" ></img>
             </div>
+            <div>
+              
+            </div>
         </div>
 </main>
 
