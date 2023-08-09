@@ -10,12 +10,12 @@ import CommentForm from '../components/CommentForm';
 import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
 <main>
-        <div className="flex-row justify-center">
-            <div className="col-12 col-md-8 mb-3">
-                <CommentList comments={thought.comments} />
-                <img className="Mixed" src="/images/Drinkin.jpg" alt="" ></img>
-            </div>
-        </div>
+  <div className="flex-row justify-center">
+    <div className="col-12 col-md-8 mb-3">
+      <CommentList comments={thought.comments} />
+      <img className="Mixed" src="/images/Drinkin.jpg" alt="" ></img>
+    </div>
+  </div>
 </main>
 
 const SingleThought = () => {
