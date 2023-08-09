@@ -14,7 +14,7 @@ import Login from './pages/Login';
 // import SingleThought from './pages/SingleThought';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './components/Home';
 import DrinksPage from './components/DrinksPage';
 import Drinks from './pages/Drink';
 
@@ -54,7 +54,7 @@ function App() {
                 path="/"
                 element={<Home />}
               />
-              <Route path="/DrinksPage" element = {<DrinksPage isloggedin={false}> </DrinksPage>
+              <Route path="/DrinksPage" element={<DrinksPage isloggedin={false}> </DrinksPage>
               }
               />
               <Route

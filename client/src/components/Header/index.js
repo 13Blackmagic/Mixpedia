@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import './index.css'
 import Auth from '../../utils/auth';
-import './index.css'
+// import './index.css'
 
 
 const Header = () => {
@@ -27,7 +26,7 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               <span>Hey there, {Auth.getProfile().data.username}!</span>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button className="logoutButton" onClick={logout}>
                 Logout
               </button>
             </>
