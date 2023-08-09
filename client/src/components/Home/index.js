@@ -5,29 +5,16 @@ import React from 'react';
 
 
 class Home extends Route {
-    constructor (children) {
+    constructor(children) {
         super(children);
         this.children = children;
     }
-//     const { loading, data } = useQuery(QUERY_USER, {
-//         username: 'luceatscode'
-//     });
-//     console.log(data);
-//     if (localStorage.getItem('id_token') !== undefined && localStorage.getItem('id_token') !== null) {
-//         return<Route
-//         path ={children.path}
-//         element={children.Component}
-//       />
-// ;
-//     }   
-//     return <Navigate to="/login" />;
-
     render() {
         if (localStorage.getItem('id_token') !== undefined && localStorage.getItem('id_token') !== null) {
-            return<Route
-            path ={this.children.path}
-            element={this.children.Component}
-          />
+            return <Route
+                path={this.children.path}
+                element={this.children.Component}
+            />
         }
         return <Navigate to="/login" />;
     }

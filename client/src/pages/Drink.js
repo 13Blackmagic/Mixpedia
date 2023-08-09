@@ -1,14 +1,10 @@
 import React from 'react';
-
-// Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
 import { QUERY_SINGLE_drink, QUERY_ALL_DRINKS } from '../utils/queries';
-import './Drink.css';
 
 /* <main>
         <div className="flex-row justify-center">
@@ -39,23 +35,23 @@ const GetAllDrinks = () => {
   return (
     <div className="my-3">
       <div className="card-header bg-dark text-light p-2 m-0">
-      {drink.map((drink, i) => {
-        return <div key={i}>
-          {console.log(drink)}
-          <img className="drinkImage" src={drink.strDrinkThumb}></img> <br />
-          <span>Name: </span>{drink.strDrink} <br />
-  
-          <span style={{ fontSize: '1rem' }}>
-            Category: {drink.strCategory}
-          </span> <br />
-  
-          <span style={{ fontSize: '1rem' }}>
-            Glass: {drink.strGlass}
-          </span> <br />
-  
-          <span style={{ fontSize: '1rem' }}>
-            Instructions: {drink.strInstructions}
-          </span>
+        {drink.map((drink, i) => {
+          return <div key={i}>
+            {console.log(drink)}
+            <img className="drinkImage" src={drink.strDrinkThumb}></img> <br />
+            <span>Name: </span>{drink.strDrink} <br />
+
+            <span style={{ fontSize: '1rem' }}>
+              Category: {drink.strCategory}
+            </span> <br />
+
+            <span style={{ fontSize: '1rem' }}>
+              Glass: {drink.strGlass}
+            </span> <br />
+
+            <span style={{ fontSize: '1rem' }}>
+              Instructions: {drink.strInstructions}
+            </span>
             <div className="bg-light py-4"></div>
             <div className="my-5">
               <CommentList comments={drink.comments} />
@@ -63,12 +59,12 @@ const GetAllDrinks = () => {
             <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
               <CommentForm drinkId={drink.idDrink} />
             </div>
-        </div>
-  
-      })}
+          </div>
+
+        })}
       </div>
     </div>
-  );      
+  );
 };
 
 export default GetAllDrinks;
