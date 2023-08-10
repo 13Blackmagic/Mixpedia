@@ -60,7 +60,7 @@ const GetAllDrinks = () => {
           </span>
           
           <button 
-            data-drinkId={drink.drinkId} 
+            data-drinkId={drink.idDrink} 
             data-name={drink.strDrink}  
             data-category={drink.strCategory}
             data-glass={drink.strGlass}

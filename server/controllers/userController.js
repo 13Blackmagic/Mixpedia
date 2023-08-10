@@ -56,7 +56,7 @@ module.exports = {
       const drink = Drink.findOne({drinkId:params.drinkId});
       const updatedUser = await User.findOneAndUpdate(
         { _id: params.id },
-        { $addToSet: { savedDrinks: drink.drinkId } },
+        { $addToSet: { savedDrinks: drink._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
