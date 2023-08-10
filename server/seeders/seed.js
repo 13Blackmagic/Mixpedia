@@ -4,7 +4,6 @@ const db = require('../config/connection');
 const { User , Thought , Drink } = require('../models');
 const userSeeds = require('./userSeeds.json');
 const thoughtSeeds = require('./thoughtSeeds.json');
-const drinkSeeds = require('./drinkSeeds.json');
 
 db.once('open', async () => {
   try {
@@ -14,15 +13,19 @@ db.once('open', async () => {
     await Drink.deleteMany({});
 
     await User.create(userSeeds);
-    /*
-    const drinkData = data.data.drink.map(drink => {
+  
+    const drinkSeeds = data.data.drinks.map(item => {
       return {
-        idDrink: drink.idDrink,
-        name: drink.strDrink,
+        idDrink: item.idDrink,
+        name: item.strDrink,
+        glass: item.strGlass,
+        image: item.strDrinkThumb,
+        category: item.strCategory,
+        instructions: item.strInstructions
       }
     })
-    */
-    const drinksall = await Drink.create(drinkSeeds[0]);
+    
+    const drinksall = await Drink.create(drinkSeeds);
     console.log(drinksall)
     for (let i = 0; i < thoughtSeeds.length; i++) {
       const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
