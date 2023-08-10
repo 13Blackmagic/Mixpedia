@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
-
+import Button from 'react-bootstrap/Button';
 import { QUERY_ALL_DRINKS } from '../utils/queries';
 import { CREATE_DRINK } from '../utils/mutations';
+
 
 const GetAllDrinks = () => {
   
@@ -52,6 +53,7 @@ const GetAllDrinks = () => {
           <span style={{ fontSize: '1rem' }}>
             Glass: {drink.glass}
           </span> <br />
+
   
           <span style={{ fontSize: '1rem' }}>
             Instructions: {drink.instructions}
@@ -65,6 +67,7 @@ const GetAllDrinks = () => {
             data-instructions={drink.strInstructions}
             data-image={drink.strDrinkThumb}
             onClick={addDrink}>Create Drink</button>
+            <button onClick={addDrink}>Save Drinks</button>
         </div>
         })}
       </div>
