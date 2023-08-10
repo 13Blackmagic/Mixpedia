@@ -6,16 +6,33 @@ import CommentForm from '../components/CommentForm';
 import Button from 'react-bootstrap/Button';
 import { QUERY_ALL_DRINKS } from '../utils/queries';
 import { CREATE_DRINK } from '../utils/mutations';
+import { SAVE_DRINK } from '../utils/localStorage';
+import { addDrinkIds } from '../utils/localStorage';
+
 
 
 const GetAllDrinks = () => {
   
-  const { drinkId } = useParams();
+  const { idDrink } = useParams();
   const { loading, data } = useQuery(QUERY_ALL_DRINKS)
   const [createDrink] = useMutation(CREATE_DRINK);
   
   console.log(data)
   const drinks = data?.getDrinks || [];
+
+  async function SAVE_DRINK(drinkId){
+    try {
+      const { data } = await SAVE_DRINK({
+        variables: {
+          drinkId
+        },
+      });
+      console.log(data)
+    } catch(err){
+      console.log(err)
+    }
+  }
+
 
 
   async function addDrink(event){
@@ -60,14 +77,14 @@ const GetAllDrinks = () => {
           </span>
           
           <button 
-            data-drinkId={drink.idDrink} 
+            data-drinkid={drink.idDrink} 
             data-name={drink.strDrink}  
             data-category={drink.strCategory}
             data-glass={drink.strGlass}
             data-instructions={drink.strInstructions}
             data-image={drink.strDrinkThumb}
-            onClick={addDrink}>Create Drink</button>
-            <button onClick={addDrink}>Save Drinks</button>
+            onClick={addDrinkIds}>Create Drink</button>
+            <button onClick={SAVE_DRINK}>Save Drink</button>
         </div>
         })}
       </div>
