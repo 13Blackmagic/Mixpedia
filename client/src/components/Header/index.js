@@ -18,6 +18,9 @@ const Header = () => {
           <Link className="text-light" to="/drinks">
             <h1 className="m-0">Show all drinks</h1>
           </Link>
+          <Link className="text-light" to="/myDrinks">
+            <h1 className="m-0">Show my saved drinks</h1>
+          </Link>
 
         </div>
         <div>
