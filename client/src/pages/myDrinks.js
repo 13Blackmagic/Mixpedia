@@ -10,7 +10,7 @@ import { GET_ME } from '../utils/queries';
 import { DELETE_DRINK, CREATE_DRINK } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { useQuery, useMutation } from '@apollo/client';
-
+import { saveDrinkIds, getSavedDrinkIds } from '../utils/localStorage';
 const SavedDrinks = () => {
   // const [userData, setUserData] = useState({});
 
@@ -18,6 +18,11 @@ const { loading, data } = useQuery(GET_ME);
 const [deleteDrink, { error }] = useMutation(DELETE_DRINK);
 const userData = data?.me || {};
 console.log(userData)
+
+const [createDrink] = useMutation(CREATE_DRINK);
+
+const [savedDrinkIds, setSavedDrinkIds] = useState(getSavedDrinkIds());
+
 
 
   // create function that accepts the drink's mongo _id value as param and deletes the drink from the database
