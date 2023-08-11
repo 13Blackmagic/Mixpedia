@@ -39,7 +39,7 @@ console.log(userData)
       console.error(err);
     }
   };
-
+  console.log('userData.savedDrinks',userData.savedDrinks)
   // if data isn't here yet, say so
   if (loading) {
     return <h2>LOADING...</h2>;
@@ -53,11 +53,6 @@ console.log(userData)
         </Container>
       </div>
       <Container>
-        <h2 className='pt-5'>
-          {userData?.savedDrinks?.length
-            ? `Viewing ${userData.SavedDrinks.length} saved ${userData.SavedDrinks.length === 1 ? 'drink' : 'drinks'}:`
-            : 'You have no saved drinks!'}
-        </h2>
         <Row>
           {userData?.savedDrinks?.map((drink) => {
             return (
