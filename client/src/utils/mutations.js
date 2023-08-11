@@ -64,8 +64,8 @@ export const ADD_COMMENT = gql`
 `;
 
 export const CREATE_DRINK = gql`  
-mutation CreateDrink($idDrink: String!, $name: String!, $category: String!, $instructions: String!) {
-  createDrink(idDrink: $idDrink, name: $name, category: $category, instructions: $instructions) {
+mutation CreateDrink($idDrink: String!, $name: String!, $category: String!, $instructions: String!, $glass: String!) {
+  createDrink(idDrink: $idDrink, name: $name, category: $category, instructions: $instructions, glass: $glass) {
     _id
     email
     username

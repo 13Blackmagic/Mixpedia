@@ -17,35 +17,24 @@ const GetAllDrinks = () => {
   const { loading, data } = useQuery(QUERY_ALL_DRINKS)
   const [createDrink] = useMutation(CREATE_DRINK);
   
-  console.log(data)
   const drinks = data?.getDrinks || [];
 
-  // async function SAVE_DRINK(drinkId){
-  //   try {
-  //     const { data } = await SAVE_DRINK({
-  //       variables: {
-  //         drinkId
-  //       },
-  //     });
-  //     console.log(data)
-  //   } catch(err){
-  //     console.log(err)
-  //   }
-  // }
-
-
-
-  async function addDrink(event){
+  
+// save drink button
+  async function addDrink(drink){
+    console.log('addDrink', drink)
     try {
-      const newDrink = event.target.dataset;
+      // const newDrink = event.target.dataset;
+      // const idDrink = {idDrink: newDrink.drinkid}
+      // console.log("newDrink", newDrink)
       const { data } = await createDrink({
         variables: {
-          ...newDrink
+          ...drink
         },
       });
       console.log(data)
     } catch(err){
-      console.log(err)
+      console.error(err)
     }
   }
 
@@ -59,7 +48,7 @@ const GetAllDrinks = () => {
       <div className="card-header bg-dark text-light p-2 m-0">
       {drinks?.map((drink, i) => {
         return <div key={i}>
-          {console.log(drink)}
+          {/* {console.log(drink)} */}
           <img className="drinkImage" src={drink.image}></img> <br />
           <span>Name: </span>{drink.name} <br />
   
@@ -77,14 +66,13 @@ const GetAllDrinks = () => {
           </span>
           
           <button 
-            data-drinkid={drink.idDrink} 
-            data-name={drink.strDrink}  
-            data-category={drink.strCategory}
-            data-glass={drink.strGlass}
-            data-instructions={drink.strInstructions}
-            data-image={drink.strDrinkThumb}
-            onClick={addDrinkIds}>Create Drink</button>
-            <button onClick={SAVE_DRINK}>Save Drink</button>
+            // data-drinkid={drink.idDrink} 
+            // data-name={drink.strDrink}  
+            // data-category={drink.strCategory}
+            // data-glass={drink.strGlass}
+            // data-instructions={drink.strInstructions}
+            // data-image={drink.strDrinkThumb}
+            onClick={()=>addDrink(drink)}>Save Drink</button>
         </div>
         })}
       </div>

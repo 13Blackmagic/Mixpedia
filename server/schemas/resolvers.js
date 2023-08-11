@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Thought, Drink } = require('../models');
 const { signToken } = require('../utils/auth');
+const { create } = require('../models/Drink');
 
 const resolvers = {
   Query: {
@@ -57,6 +58,7 @@ const resolvers = {
     },
 
     async createDrink(parent, args, context) {
+      console.log('createDrink',args, context)
       try {
           if(!context.user) {
             throw new AuthenticationError('You need to be logged in!');
