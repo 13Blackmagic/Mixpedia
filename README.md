@@ -15,7 +15,7 @@ Mixpedia is a website application that lets you look at mixed drinks and save th
 
 
 ## Deployed Application
-*to be announced*
+Heroku
 
 ## Screenshot 
 ![Alt text](image-1.png)
