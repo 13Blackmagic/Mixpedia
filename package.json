@@ -7,7 +7,7 @@
     "scripts": {
         "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
         "seed": "node server/seeders/seed.js",
-        "start": "npm run build && cd server && node server.js",
+        "start": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
         "server": "cd server nodemon server.js --ignore client",
         "build": "cd client && npm run build",
         "install": "cd server && npm i && cd ../client && npm i",
