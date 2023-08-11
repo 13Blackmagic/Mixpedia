@@ -82,3 +82,13 @@ mutation DeleteDrink($idDrink: String!) {
   }
 }
 `;
+
+export const SAVE_DRINK = gql`
+mutation SaveDrink($idDrink: String!, $name: String!, $category: String!, $instructions: String!) {
+  saveDrink(idDrink: $idDrink, name: $name, category: $category, instructions: $instructions) {
+    _id
+    email
+    username
+  }
+}
+`;

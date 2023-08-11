@@ -6,11 +6,14 @@ import CommentForm from '../components/CommentForm';
 import Button from 'react-bootstrap/Button';
 import { QUERY_ALL_DRINKS } from '../utils/queries';
 import { CREATE_DRINK } from '../utils/mutations';
+import { SAVE_DRINK } from '../utils/localStorage';
+import { addDrinkIds } from '../utils/localStorage';
+
 
 
 const GetAllDrinks = () => {
   
-  const { drinkId } = useParams();
+  const { idDrink } = useParams();
   const { loading, data } = useQuery(QUERY_ALL_DRINKS)
   const [createDrink] = useMutation(CREATE_DRINK);
   
