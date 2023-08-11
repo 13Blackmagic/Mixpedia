@@ -20,18 +20,18 @@ const GetAllDrinks = () => {
   console.log(data)
   const drinks = data?.getDrinks || [];
 
-  async function SAVE_DRINK(drinkId){
-    try {
-      const { data } = await SAVE_DRINK({
-        variables: {
-          drinkId
-        },
-      });
-      console.log(data)
-    } catch(err){
-      console.log(err)
-    }
-  }
+  // async function SAVE_DRINK(drinkId){
+  //   try {
+  //     const { data } = await SAVE_DRINK({
+  //       variables: {
+  //         drinkId
+  //       },
+  //     });
+  //     console.log(data)
+  //   } catch(err){
+  //     console.log(err)
+  //   }
+  // }
 
 
 
