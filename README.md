@@ -2,6 +2,11 @@
 ## Description
 Mixpedia is a website application that lets you look at mixed drinks and save them so you can then later try them for your own purposes.
 
+# Installation
+-Npm i
+-Npm run seeds
+-Npm run develop
+
 
 ## Table of contents
 #[DeployedApp](#DeployedApplication)
