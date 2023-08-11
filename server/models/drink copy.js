@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-
+// 
 const drinkSchema = new Schema(
   {
   idDrink: {
